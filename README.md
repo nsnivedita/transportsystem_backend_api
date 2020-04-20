@@ -1,10 +1,9 @@
-## Transport System Back-end Service
+## Transport System Backend Api
 
 ### How to Run
-1- Clone the project.  
-2- Change Dataset flie location into utility/ExcelRead and component/AppComponet classes.  
-3- Solition has been designed to consume xlt file format.  
-4- Bild and excute project. Application will start running on **port-3200**.  
+1- Clone/Download project.   
+2- Open in IDE.  
+3- Bild and excute project. Application will start running on **port-3200**.  
 
 ### Features
 
