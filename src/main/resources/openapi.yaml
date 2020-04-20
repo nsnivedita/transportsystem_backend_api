@@ -1,0 +1,180 @@
+openapi: 3.0.1
+info:
+  title: Transport System Backend API
+  description: Spring Boot based back-end service for transport system
+  version: V1
+servers:
+- url: "http://localhost:3200"
+  description: Generated server url
+tags:
+- name: transport system
+  description: The Transport System Backend API
+paths:
+  /api/routes:
+    get:
+      tags:
+      - transport system
+      summary: Distance between two planets
+      description: Find List of all route which is present in database
+      operationId: getRoutes
+      responses:
+        "200":
+          description: default response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Route"
+  /api/traffics:
+    get:
+      tags:
+      - transport system
+      summary: 'Traffic Delay '
+      description: 'Find List of all traffic delay which is present in database '
+      operationId: getTraffic
+      responses:
+        "200":
+          description: default response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Traffic"
+  /api/routdetails:
+    get:
+      tags:
+      - transport system
+      summary: Route Detail
+      description: 'Find List of all route  detail from rote and traffic table. '
+      operationId: getRoutDetails
+      responses:
+        "200":
+          description: default response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/RouteDetail"
+  /api/findroute:
+    post:
+      tags:
+      - transport system
+      description: 'Find Route '
+      operationId: getDirection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Path"
+      responses:
+        "200":
+          description: default response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Direction"
+  /api/planets:
+    get:
+      tags:
+      - transport system
+      summary: Planets Name
+      description: 'Find List of all planets which is present in database '
+      operationId: getPlanets
+      responses:
+        "200":
+          description: default response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Planet"
+components:
+  schemas:
+    Route:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        route_id:
+          type: integer
+          format: int32
+        planet_origin:
+          type: string
+        planet_destination:
+          type: string
+        distance:
+          type: number
+          format: double
+    Traffic:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        routeid:
+          type: integer
+          format: int32
+        planet_origin:
+          type: string
+        planet_destination:
+          type: string
+        traffic_delay:
+          type: number
+          format: double
+    RouteDetail:
+      type: object
+      properties:
+        route_id:
+          type: integer
+          format: int32
+        planet_origin_id:
+          type: string
+        planet_origin_name:
+          type: string
+        planet_destination_id:
+          type: string
+        planet_destination_name:
+          type: string
+        distance:
+          type: number
+          format: double
+        traffic_delay:
+          type: number
+          format: double
+    Path:
+      type: object
+      properties:
+        source:
+          type: string
+        destination:
+          type: string
+    Direction:
+      type: object
+      properties:
+        source:
+          type: string
+        destination:
+          type: string
+        path:
+          type: string
+        distance:
+          type: number
+          format: double
+        duration:
+          type: number
+          format: double
+    Planet:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        planet_node:
+          type: string
+        planet_name:
+          type: string
